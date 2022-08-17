@@ -1,9 +1,10 @@
 import Card from "react-bootstrap/Card";
+import "./card.css";
 
-const Output = example => {
+const Output = ({text}) => {
   return (
-    <Card className="bg-light" style={{ width: '15rem' }}>
-      <Card.Body>Example</Card.Body>
+    <Card className="bg-light" style={{ width: "15rem" }}>
+      <Card.Body className="text">{text}</Card.Body>
     </Card>
   );
 };

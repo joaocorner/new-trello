@@ -1,10 +1,9 @@
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Output from "./Output";
+import InputText from "./InputText";
+import Button from "./AddButton";
 
 const Input = () => {
   return (
@@ -17,7 +16,7 @@ const Input = () => {
         </Row>
         <Row>
           <Col>
-            <Output />
+            <Output text="" />
           </Col>
           <Col>
             <Output />
@@ -28,44 +27,24 @@ const Input = () => {
         </Row>
         <Row>
           <Col>
-            <InputGroup className="mb-3" style={{ width: "15rem" }}>
-              <InputGroup></InputGroup>
-              <Form.Control as="textarea" aria-label="With textarea" />
-            </InputGroup>
+            <InputText />
           </Col>
           <Col>
-            {" "}
-            <InputGroup className="mb-3" style={{ width: "15rem" }}>
-              <InputGroup></InputGroup>
-              <Form.Control as="textarea" aria-label="With textarea" />
-            </InputGroup>
+            <InputText />
           </Col>
           <Col>
-            {" "}
-            <InputGroup className="mb-3" style={{ width: "15rem" }}>
-              <InputGroup></InputGroup>
-              <Form.Control as="textarea" aria-label="With textarea" />
-            </InputGroup>
+            <InputText />
           </Col>
         </Row>
         <Row>
           <Col>
-            {" "}
-            <Button variant="primary" size="sm">
-              +{" "}
-            </Button>
+            <Button />
           </Col>
           <Col>
-            {" "}
-            <Button variant="primary" size="sm">
-              +{" "}
-            </Button>
+            <Button />
           </Col>
           <Col>
-            {" "}
-            <Button variant="primary" size="sm">
-              +{" "}
-            </Button>
+            <Button />
           </Col>
         </Row>
       </Container>
