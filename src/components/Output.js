@@ -1,14 +1,9 @@
 import Card from "react-bootstrap/Card";
-import ListGroup from 'react-bootstrap/ListGroup';
 
 const Output = example => {
   return (
-    <Card style={{ width: '18rem' }}>
-      <ListGroup variant="flush">
-        <ListGroup.Item>Cras justo odio</ListGroup.Item>
-        <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-        <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-      </ListGroup>
+    <Card className="bg-light" style={{ width: '15rem' }}>
+      <Card.Body>Example</Card.Body>
     </Card>
   );
 };
