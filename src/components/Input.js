@@ -20,7 +20,7 @@ const Input = () => {
         </Row>
         <Row>
           <Col>
-            <Output text="" />
+            <Output />
           </Col>
           <Col>
             <Output />
