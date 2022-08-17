@@ -1,11 +1,16 @@
+import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 
-const AddButton = () => {
+const AddButton = ({onClick}) => {
   return (
-    <Button variant="primary" size="sm">
-        Add
-  </Button>
-  )
-}
+    <Button variant="primary" size="sm" onClick={onClick}>
+      Add
+    </Button>
+  );
+};
 
-export default AddButton
+Button.propTypes = {
+  onClick: PropTypes.func,
+};
+
+export default AddButton;

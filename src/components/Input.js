@@ -6,6 +6,10 @@ import InputText from "./InputText";
 import Button from "./AddButton";
 
 const Input = () => {
+  const onClick = () => {
+    console.log("Add");
+  };
+
   return (
     <div>
       <Container>
@@ -38,7 +42,7 @@ const Input = () => {
         </Row>
         <Row>
           <Col>
-            <Button />
+            <Button onClick={onClick} />
           </Col>
           <Col>
             <Button />
