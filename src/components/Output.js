@@ -1,11 +1,30 @@
 import Card from "react-bootstrap/Card";
 import "./card.css";
 
-const Output = ({text}) => {
+const tasks = [
+  {
+    id: 1,
+    text: "Learn React",
+    tag: "exam",
+    status: "To Do",
+  },
+  {
+    id: 2,
+    text: "Learn Node",
+    tag: "job",
+    status: "Doing",
+  },
+];
+
+const Output = () => {
   return (
-    <Card className="bg-light" style={{ width: "15rem" }}>
-      <Card.Body className="text">{text}</Card.Body>
-    </Card>
+    <div>
+      {tasks.map((task) => (
+        <Card className="bg-light" style={{ width: "15rem" }}>
+          <Card.Body className="text">{task.text}</Card.Body>
+        </Card>
+      ))}
+    </div>
   );
 };
 
