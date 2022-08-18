@@ -10,14 +10,21 @@ const App = () => {
       title: "Learn React",
       text: "Exam will be on the 15th of May",
       tag: "exam",
-      status: "To Do",
+      status: "todo",
     },
     {
       id: 2,
       title: "Learn Node",
       text: "Node is essential for the backend",
       tag: "job",
-      status: "Doing",
+      status: "doing",
+    },
+    {
+      id: 3,
+      title: "Learn Node",
+      text: "Node is essential for the backend",
+      tag: "job",
+      status: "done",
     },
   ]);
 
@@ -34,8 +41,8 @@ const App = () => {
   };
 
   // Changing Status
-  const changeStatus = (id) => {
-    console.log(id);
+  const changeStatus = (status) => {
+    console.log(status);
   };
 
   return (
