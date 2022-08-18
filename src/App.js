@@ -2,6 +2,9 @@ import "./App.css";
 import Column from "./components/Column";
 import InputText from "./components/InputText";
 import { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -44,7 +47,9 @@ const App = () => {
   const changeStatus = (status, id) => {
     setTasks(
       tasks.map((task) =>
-        (task.id === id && task.status==='todo') ? { ...task, status: 'doing' } : task
+        task.id === id && task.status === "todo"
+          ? { ...task, status: "doing" }
+          : task
       )
     );
   };
@@ -55,7 +60,13 @@ const App = () => {
       {tasks.length > 0 ? (
         <Column tasks={tasks} onDelete={deleteTask} onChange={changeStatus} />
       ) : (
-        " No tasks to display"
+        <Container>
+          <Row className="label">
+            <Col className="todolab">To Do</Col>
+            <Col className="doinglab">Doing</Col>
+            <Col className="donelab">Done</Col>
+          </Row>
+        </Container>
       )}
     </div>
   );
