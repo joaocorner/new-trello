@@ -1,8 +1,14 @@
 .title {
   padding: 10px 0 0 10px;
 }
+.tag {
+  padding: 10px 0 0 10px;
+}
+.text {
+  padding: 10px 0 0 10px;
+}
 
-.text:hover {
+.bg-light:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
