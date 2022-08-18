@@ -8,7 +8,7 @@ const Output = ({ task, onDelete, onChange }) => {
         key={task.id}
         className="bg-light"
         style={{ width: "18rem", height: "10rem" }}
-        onClick={() => onChange(task.id)}
+        onClick={() => onChange(task.status, task.id)}
         onDoubleClick={() => onDelete(task.id)}
       >
         <Card.Title className="title">{task.title}</Card.Title>

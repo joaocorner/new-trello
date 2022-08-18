@@ -41,8 +41,12 @@ const App = () => {
   };
 
   // Changing Status
-  const changeStatus = (status) => {
-    console.log(status);
+  const changeStatus = (status, id) => {
+    setTasks(
+      tasks.map((task) =>
+        (task.id === id && task.status==='todo') ? { ...task, status: 'doing' } : task
+      )
+    );
   };
 
   return (
