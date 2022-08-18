@@ -1,10 +1,10 @@
 import "./App.css";
-import Input from "./components/Input";
+import Column from "./components/Column";
 
 function App() {
   return (
     <div className="App">
-      <Input />
+      <Column />
     </div>
   );
 }

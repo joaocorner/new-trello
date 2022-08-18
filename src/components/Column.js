@@ -5,7 +5,7 @@ import Output from "./Output";
 import InputText from "./InputText";
 import Button from "./AddButton";
 
-const Input = () => {
+const Column = () => {
   const onClick = () => {
     console.log("Add");
   };
@@ -56,4 +56,4 @@ const Input = () => {
   );
 };
 
-export default Input;
+export default Column;
