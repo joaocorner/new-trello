@@ -7,7 +7,7 @@ const InputText = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [tag, setTag] = useState("");
-  const [status, setStatus] = useState("todo");
+  const [status, setStatus] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();

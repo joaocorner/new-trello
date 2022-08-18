@@ -13,21 +13,21 @@ const App = () => {
       title: "Learn React",
       text: "Exam will be on the 15th of May",
       tag: "exam",
-      status: "todo",
+      status: false,
     },
     {
       id: 2,
       title: "Learn Node",
       text: "Node is essential for the backend",
       tag: "job",
-      status: "doing",
+      status: true,
     },
     {
       id: 3,
       title: "Learn Node",
       text: "Node is essential for the backend",
       tag: "job",
-      status: "done",
+      status: true,
     },
   ]);
 
@@ -44,12 +44,10 @@ const App = () => {
   };
 
   // Changing Status
-  const changeStatus = (status, id) => {
+  const changeStatus = (id) => {
     setTasks(
       tasks.map((task) =>
-        task.id === id && task.status === "todo"
-          ? { ...task, status: "doing" }
-          : task
+        task.id === id ? { ...task, status: !task.status } : task
       )
     );
   };
@@ -63,7 +61,6 @@ const App = () => {
         <Container>
           <Row className="label">
             <Col className="todolab">To Do</Col>
-            <Col className="doinglab">Doing</Col>
             <Col className="donelab">Done</Col>
           </Row>
         </Container>
