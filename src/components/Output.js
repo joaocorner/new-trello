@@ -3,10 +3,10 @@ import "./card.css";
 
 const Output = ({ task, onDelete, onChange }) => {
   return (
-    <div>
+    <div className="cards">
       <Card
         key={task.id}
-        className="bg-light"
+        className="bg-light cards"
         style={{ width: "18rem", height: "10rem" }}
         onClick={() => onChange(task.id)}
         onDoubleClick={() => onDelete(task.id)}

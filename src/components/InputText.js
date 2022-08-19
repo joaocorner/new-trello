@@ -1,5 +1,7 @@
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import "./input.css";
+
 
 import { useState } from "react";
 
@@ -26,7 +28,7 @@ const InputText = ({ onAdd }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div>
+      <div className="inputs">
           <InputGroup className="mb-3" style={{ width: "15rem" }}>
             <input
               type="text"
@@ -46,7 +48,7 @@ const InputText = ({ onAdd }) => {
               value={tag}
               onChange={(e) => setTag(e.target.value)}
             />
-            <input type="submit" value="Save Task" />
+            <input type="submit" value="Save Task" className="button2"/>
             {/* <Button type="submit" variant="secondary" size="sm">
               Add
             </Button> */}

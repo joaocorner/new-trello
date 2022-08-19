@@ -8,27 +8,27 @@ import Col from "react-bootstrap/Col";
 
 const App = () => {
   const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Learn React",
-      text: "Exam will be on the 15th of May",
-      tag: "exam",
-      status: false,
-    },
-    {
-      id: 2,
-      title: "Learn Node",
-      text: "Node is essential for the backend",
-      tag: "job",
-      status: true,
-    },
-    {
-      id: 3,
-      title: "Learn Node",
-      text: "Node is essential for the backend",
-      tag: "job",
-      status: true,
-    },
+    // {
+    //   id: 1,
+    //   title: "Learn React",
+    //   text: "Exam will be on the 15th of May",
+    //   tag: "exam",
+    //   status: false,
+    // },
+    // {
+    //   id: 2,
+    //   title: "Learn Node",
+    //   text: "Node is essential for the backend",
+    //   tag: "job",
+    //   status: true,
+    // },
+    // {
+    //   id: 3,
+    //   title: "Learn Node",
+    //   text: "Node is essential for the backend",
+    //   tag: "job",
+    //   status: true,
+    // },
   ]);
 
   // Add Task
@@ -54,17 +54,29 @@ const App = () => {
 
   return (
     <div className="App">
-      <InputText onAdd={addTask} />
-      {tasks.length > 0 ? (
-        <Column tasks={tasks} onDelete={deleteTask} onChange={changeStatus} />
-      ) : (
-        <Container>
-          <Row className="label">
-            <Col className="todolab">To Do</Col>
-            <Col className="donelab">Done</Col>
-          </Row>
-        </Container>
-      )}
+      <Container className='external-border'>
+        <Row className="rows">
+          <Col className="columns">
+            <InputText onAdd={addTask} />
+          </Col>
+        </Row>
+        <Row className="rows">
+          <Col className="columns">
+            {tasks.length > 0 ? (
+              <Column
+                tasks={tasks}
+                onDelete={deleteTask}
+                onChange={changeStatus}
+              />
+            ) : (
+              <Row className="label">
+                <Col className="columns">To Do</Col>
+                <Col className="columns">Done</Col>
+              </Row>
+            )}
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

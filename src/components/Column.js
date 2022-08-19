@@ -2,6 +2,7 @@ import Output from "./Output";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "./columns.css";
 
 const Column = ({ tasks, onDelete, onChange }) => {
   const todos = tasks.filter((task) => task.status === false);
@@ -10,12 +11,12 @@ const Column = ({ tasks, onDelete, onChange }) => {
   return (
     <>
       <Container>
-        <Row className="label">
-          <Col className="todolab">To Do</Col>
-          <Col className="donelab">Done</Col>
+        <Row className="rows">
+          <Col className="columns">To Do</Col>
+          <Col className="columns">Done</Col>
         </Row>
-        <Row className="cardtask">
-          <Col className="cardtodo">
+        <Row className="rows">
+          <Col className="columns">
             {" "}
             {todos.map((task) => (
               <Output
@@ -26,7 +27,7 @@ const Column = ({ tasks, onDelete, onChange }) => {
               />
             ))}
           </Col>
-          <Col className="carddone">
+          <Col className="columns">
             {" "}
             {done.map((task) => (
               <Output
