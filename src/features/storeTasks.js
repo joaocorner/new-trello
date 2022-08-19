@@ -26,3 +26,13 @@ export async function saveTasks(key, newTodo) {
 }
 
 //Delete tasks from local storage
+export function deletingTask(tasks, id) {
+  let myTasks = tasks.filter((item) => {
+    return item.id !== id;
+  });
+
+  localStorage.setItem("@SavedTasks", JSON.stringify(myTasks));
+//   console.log("Task deleted");
+
+  return myTasks;
+}

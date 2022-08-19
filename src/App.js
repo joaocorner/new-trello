@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { saveTasks, getTasksSave } from "./features/storeTasks.js";
+import { saveTasks, getTasksSave, deletingTask } from "./features/storeTasks.js";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -34,6 +34,8 @@ const App = () => {
   // Delete Task
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
+    deletingTask(tasks, id);
+
   };
 
   // Changing Status
