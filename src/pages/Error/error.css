@@ -1,0 +1,18 @@
+.container-error {
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(121, 159, 147);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  color: black;
+}

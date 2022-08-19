@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import App from "./App";
+import Error from "./pages/Error";
 
 function RoutesApp() {
   return (
@@ -9,6 +10,7 @@ function RoutesApp() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/todolist" element={<App />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
