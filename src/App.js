@@ -8,27 +8,27 @@ import Col from "react-bootstrap/Col";
 
 const App = () => {
   const [tasks, setTasks] = useState([
-    // {
-    //   id: 1,
-    //   title: "Learn React",
-    //   text: "Exam will be on the 15th of May",
-    //   tag: "exam",
-    //   status: false,
-    // },
-    // {
-    //   id: 2,
-    //   title: "Learn Node",
-    //   text: "Node is essential for the backend",
-    //   tag: "job",
-    //   status: true,
-    // },
-    // {
-    //   id: 3,
-    //   title: "Learn Node",
-    //   text: "Node is essential for the backend",
-    //   tag: "job",
-    //   status: true,
-    // },
+    {
+      id: 1,
+      title: "Learn React",
+      text: "Exam will be on the 15th of May",
+      tag: "exam",
+      status: false,
+    },
+    {
+      id: 2,
+      title: "Learn Node",
+      text: "Node is essential for the backend",
+      tag: "job",
+      status: true,
+    },
+    {
+      id: 3,
+      title: "Learn Node",
+      text: "Node is essential for the backend",
+      tag: "job",
+      status: true,
+    },
   ]);
 
   // Add Task

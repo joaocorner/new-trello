@@ -23,7 +23,7 @@ const InputText = ({ onAdd }) => {
     setTitle("");
     setText("");
     setTag("");
-    setStatus("todo");
+    setStatus(false);
   };
 
   return (
