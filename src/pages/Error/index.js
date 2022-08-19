@@ -7,7 +7,7 @@ export default function Error() {
       <h1>Error</h1>
       <p>Sorry, the page you are looking for does not exist.</p>
       <p>
-        <Link to="/" className="link">Click here</Link> to back to the main page
+        <Link to="/home" className="link">Click here</Link> to back to the main page
       </p>
     </div>
   );

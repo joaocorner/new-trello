@@ -53,7 +53,7 @@ const InputText = ({ onAdd }) => {
               Add
             </Button> */}
           </InputGroup>
-          <a className="back" href="/">Back to Home Page</a>
+          <a className="back" href="/home">Back to Home Page</a>
       </div>
     </form>
   );

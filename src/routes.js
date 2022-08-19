@@ -8,6 +8,7 @@ function RoutesApp() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/home" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/todolist" element={<App />} />
         <Route path="*" element={<Error />} />
