@@ -1,37 +1,15 @@
 import "./App.css";
 import Column from "./components/Column";
 import InputText from "./components/InputText";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { saveTasks } from "./features/storeTasks.js";
+import { saveTasks, getTasksSave } from "./features/storeTasks.js";
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    //   {
-    //     id: 1,
-    //     title: "Learn React",
-    //     text: "Exam will be on the 15th of May",
-    //     tag: "exam",
-    //     status: false,
-    //   },
-    //   {
-    //     id: 2,
-    //     title: "Learn Node",
-    //     text: "Node is essential for the backend",
-    //     tag: "job",
-    //     status: true,
-    //   },
-    //   {
-    //     id: 3,
-    //     title: "Learn Node",
-    //     text: "Node is essential for the backend",
-    //     tag: "job",
-    //     status: true,
-    //   },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   // Add Task - one way
   // const addTask = async (task) => {
@@ -47,7 +25,7 @@ const App = () => {
       const id = (await Math.floor(Math.random() * 1000000)) + 1;
       const newTask = await { ...task, id };
       setTasks([...tasks, newTask]);
-      saveTasks("test", newTask.id);
+      saveTasks("@SavedTasks", newTask);
     } catch {
       alert("Error");
     }
@@ -66,6 +44,18 @@ const App = () => {
       )
     );
   };
+
+  // Fetches tasks from local storage
+  useEffect(() => {
+    async function getTasks() {
+      const result = await getTasksSave("@SavedTasks");
+      if (result.length === 0) {
+        console.log("No tasks found");
+      }
+      setTasks(result);
+    }
+    getTasks();
+  }, []);
 
   return (
     <div className="App">
