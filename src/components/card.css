@@ -1,10 +1,9 @@
-
 .text {
   padding: 10px 0 0 10px;
 }
 
-.bg-light:hover {
-  transform: scale(1.05);
+.title:hover {
+  transform: scale(1.15);
   cursor: pointer;
 }
 
@@ -12,4 +11,13 @@
   text-align: center;
   justify-content: center;
   display: flex;
+}
+
+.close {
+  color: red;
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  font-size: 20px;
 }
