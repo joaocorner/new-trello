@@ -11,7 +11,7 @@ const Column = ({ tasks, onDelete, onChange }) => {
   return (
     <>
       <Container>
-        <Row className="rows">
+        <Row className="rows-label">
           <Col className="columns">To Do</Col>
           <Col className="columns">Done</Col>
         </Row>

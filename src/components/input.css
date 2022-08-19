@@ -1,6 +1,8 @@
 .inputs {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .mb-3 {
@@ -19,4 +21,16 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 15px;
+}
+
+.back {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.back:hover {
+  color: black;
+  transform: scale(1.1);
 }

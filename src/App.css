@@ -6,3 +6,8 @@
 .external-border {
   margin: auto;
 }
+
+.label {
+  font-weight: 600;
+  font-size: 20px;
+}

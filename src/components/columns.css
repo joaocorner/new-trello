@@ -5,3 +5,8 @@
 .bg-light.card {
   background-color: blue;
 }
+
+.rows-label {
+  font-weight: 600;
+  font-size: 20px;
+}

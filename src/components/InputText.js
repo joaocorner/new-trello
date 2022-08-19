@@ -14,8 +14,8 @@ const InputText = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!text) {
-      alert("Please enter a task");
+    if (!text || !title) {
+      alert("Please enter a task with a title");
       return;
     }
 
@@ -53,6 +53,7 @@ const InputText = ({ onAdd }) => {
               Add
             </Button> */}
           </InputGroup>
+          <a className="back" href="/">Back to Home Page</a>
       </div>
     </form>
   );
