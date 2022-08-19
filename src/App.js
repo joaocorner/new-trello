@@ -6,37 +6,52 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { saveTasks } from "./features/storeTasks.js";
+
 const App = () => {
   const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Learn React",
-      text: "Exam will be on the 15th of May",
-      tag: "exam",
-      status: false,
-    },
-    {
-      id: 2,
-      title: "Learn Node",
-      text: "Node is essential for the backend",
-      tag: "job",
-      status: true,
-    },
-    {
-      id: 3,
-      title: "Learn Node",
-      text: "Node is essential for the backend",
-      tag: "job",
-      status: true,
-    },
+    //   {
+    //     id: 1,
+    //     title: "Learn React",
+    //     text: "Exam will be on the 15th of May",
+    //     tag: "exam",
+    //     status: false,
+    //   },
+    //   {
+    //     id: 2,
+    //     title: "Learn Node",
+    //     text: "Node is essential for the backend",
+    //     tag: "job",
+    //     status: true,
+    //   },
+    //   {
+    //     id: 3,
+    //     title: "Learn Node",
+    //     text: "Node is essential for the backend",
+    //     tag: "job",
+    //     status: true,
+    //   },
   ]);
 
-  // Add Task
-  const addTask = (task) => {
-    const id = Math.floor(Math.random() * 1000000) + 1;
-    const newTask = { ...task, id };
-    setTasks([...tasks, newTask]);
-  };
+  // Add Task - one way
+  // const addTask = async (task) => {
+  //   const id = Math.floor(Math.random() * 1000000) + 1;
+  //   const newTask = { ...task, id };
+  //   setTasks([...tasks, newTask]);
+  //   saveTasks(newTask.id, newTask);
+  // };
+
+  // Add Task - another way
+  async function addTask(task) {
+    try {
+      const id = (await Math.floor(Math.random() * 1000000)) + 1;
+      const newTask = await { ...task, id };
+      setTasks([...tasks, newTask]);
+      saveTasks("test", newTask.id);
+    } catch {
+      alert("Error");
+    }
+  }
 
   // Delete Task
   const deleteTask = (id) => {
@@ -54,7 +69,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Container className='external-border'>
+      <Container className="external-border">
         <Row className="rows">
           <Col className="columns">
             <InputText onAdd={addTask} />
