@@ -6,8 +6,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { useSelector, useDispatch } from "react-redux";
-import { addTodo, removeTodo } from "./features/todoSlice";
+import { useDispatch } from "react-redux";
+import { removeTodo } from "./features/todoSlice";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -18,31 +18,11 @@ const App = () => {
       tag: "exam",
       status: false,
     },
-    {
-      id: 2,
-      title: "Learn Node",
-      text: "Node is essential for the backend",
-      tag: "job",
-      status: true,
-    },
-    {
-      id: 3,
-      title: "Learn Node",
-      text: "Node is essential for the backend",
-      tag: "job",
-      status: true,
-    },
   ]);
   const [input, setInput] = useState("");
 
-  const count = useSelector((state) => state.todo.count);
-  const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
-  const handleAddTodo = (e) => {
-    e.preventDefault();
-    dispatch(addTodo(input));
-  };
 
   const handleTodoDone = (id) => {
     dispatch(removeTodo(id));
@@ -55,24 +35,9 @@ const App = () => {
     setTasks([...tasks, newTask]);
   };
 
-  // Delete Task
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
-
-  // Changing Status
-  const changeStatus = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, status: !task.status } : task
-      )
-    );
-  };
-
   return (
     <div className="App">
-
-      <Container className='external-border'>
+      <Container className="external-border">
         <Row className="rows">
           <Col className="columns">
             <InputText onAdd={addTask} />
@@ -81,11 +46,7 @@ const App = () => {
         <Row className="rows">
           <Col className="columns">
             {tasks.length > 0 ? (
-              <Column
-                tasks={tasks}
-                onDelete={deleteTask}
-                onChange={changeStatus}
-              />
+              <Column tasks={tasks} onCheck={handleTodoDone} />
             ) : (
               <Row className="label">
                 <Col className="columns">To Do</Col>

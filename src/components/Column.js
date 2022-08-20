@@ -4,9 +4,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./columns.css";
 
-const Column = ({ tasks, onDelete, onChange }) => {
-  const todos = tasks.filter((task) => task.status === false);
-  const done = tasks.filter((task) => task.status === true);
+import { useSelector } from "react-redux";
+
+const Column = ({ onDelete }) => {
+  const todos = useSelector((state) => state.todo.todos);
 
   return (
     <>
@@ -18,25 +19,31 @@ const Column = ({ tasks, onDelete, onChange }) => {
         <Row className="rows">
           <Col className="columns">
             {" "}
-            {todos.map((task) => (
-              <Output
-                key={task.id}
-                task={task}
-                onDelete={onDelete}
-                onChange={onChange}
-              />
-            ))}
+            {todos.map((todo) =>
+              todo.status === false ? (
+                <Output
+                  key={todo.id}
+                  title={todo.title}
+                  text={todo.text}
+                  tag={todo.tag}
+                  onDelete={onDelete}
+                />
+              ) : null
+            )}
           </Col>
           <Col className="columns">
             {" "}
-            {done.map((task) => (
-              <Output
-                key={task.id}
-                task={task}
-                onDelete={onDelete}
-                onChange={onChange}
-              />
-            ))}
+            {todos.map((todo) =>
+              todo.status === true ? (
+                <Output
+                  key={todo.id}
+                  title={todo.title}
+                  text={todo.text}
+                  tag={todo.tag}
+                  onDelete={onDelete}
+                />
+              ) : null
+            )}
           </Col>
         </Row>
       </Container>
