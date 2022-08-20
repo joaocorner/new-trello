@@ -6,6 +6,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo, removeTodo } from "./features/todoSlice";
+
 const App = () => {
   const [tasks, setTasks] = useState([
     {
@@ -30,6 +33,20 @@ const App = () => {
       status: true,
     },
   ]);
+  const [input, setInput] = useState("");
+
+  const count = useSelector((state) => state.todo.count);
+  const todos = useSelector((state) => state.todo.todos);
+  const dispatch = useDispatch();
+
+  const handleAddTodo = (e) => {
+    e.preventDefault();
+    dispatch(addTodo(input));
+  };
+
+  const handleTodoDone = (id) => {
+    dispatch(removeTodo(id));
+  };
 
   // Add Task
   const addTask = (task) => {
@@ -54,6 +71,7 @@ const App = () => {
 
   return (
     <div className="App">
+
       <Container className='external-border'>
         <Row className="rows">
           <Col className="columns">

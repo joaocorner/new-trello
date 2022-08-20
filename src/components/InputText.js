@@ -2,24 +2,26 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import "./input.css";
 
+import { useDispatch } from "react-redux";
+import { addTodo } from "../features/todoSlice";
 
 import { useState } from "react";
 
-const InputText = ({ onAdd }) => {
+const InputText = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [tag, setTag] = useState("");
   const [status, setStatus] = useState(false);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const dispatch = useDispatch();
 
-    if (!text || !title) {
-      alert("Please enter a task with a title");
+  const handleAddTodo = (e) => {
+    e.preventDefault();
+    if (!title || !text) {
+      alert("Please enter a task with a title and text");
       return;
     }
-
-    onAdd({ title, text, tag, status });
+    dispatch(addTodo({ title, text, tag, status }));
     setTitle("");
     setText("");
     setTag("");
@@ -27,8 +29,9 @@ const InputText = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="inputs">
+    <div>
+      <form onSubmit={handleAddTodo}>
+        <div className="inputs">
           <InputGroup className="mb-3" style={{ width: "15rem" }}>
             <input
               type="text"
@@ -48,14 +51,16 @@ const InputText = ({ onAdd }) => {
               value={tag}
               onChange={(e) => setTag(e.target.value)}
             />
-            <input type="submit" value="Save Task" className="button2"/>
-            {/* <Button type="submit" variant="secondary" size="sm">
-              Add
-            </Button> */}
           </InputGroup>
-          <a className="back" href="/">Back to Home Page</a>
-      </div>
-    </form>
+          <Button type="submit" variant="secondary" size="sm">
+            Save Task
+          </Button>
+          <a className="back" href="/">
+            Back to Home Page
+          </a>
+        </div>
+      </form>
+    </div>
   );
 };
 
