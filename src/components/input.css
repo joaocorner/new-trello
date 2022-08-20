@@ -9,18 +9,8 @@
   margin-top: 20px;
   text-align: center;
   justify-content: center;
-}
-
-.button2 {
-  background: rgb(100, 78, 78);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .back {
