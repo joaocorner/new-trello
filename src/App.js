@@ -16,14 +16,6 @@ import {
 const App = () => {
   const [tasks, setTasks] = useState(getLocalItmes());
 
-  // Add Task - one way
-  // const addTask = async (task) => {
-  //   const id = Math.floor(Math.random() * 1000000) + 1;
-  //   const newTask = { ...task, id };
-  //   setTasks([...tasks, newTask]);
-  //   saveTasks(newTask.id, newTask);
-  // };
-
   // Add Task - another way
   async function addTask(task) {
     try {
@@ -40,29 +32,25 @@ const App = () => {
   function deleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
     deletingTask(tasks, id);
-    // let updatedTodos = [...tasks].filter((task) => task.id !== id);
-    // setTasks(updatedTodos);
-
   }
 
   // Changing Status
   function changeStatus(id) {
-    let updatedTodos = (tasks.map((task) => {
-        if (task.id === id) {
-          return {
-            ...task,
-            status:
-              task.status === "ToDo"
-                ? "Doing"
-                : task.status === "Doing"
-                ? "Done"
-                : "ToDo",
-          };
-        } else {
-          return task;
-        }
-      })
-    );
+    let updatedTodos = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          status:
+            task.status === "ToDo"
+              ? "Doing"
+              : task.status === "Doing"
+              ? "Done"
+              : "ToDo",
+        };
+      } else {
+        return task;
+      }
+    });
     setTasks(updatedTodos);
   }
 
@@ -82,8 +70,6 @@ const App = () => {
     }
     getTasks();
   }, []);
-
-
 
   return (
     <div className="App">
