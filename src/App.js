@@ -6,7 +6,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import { saveTasks, getTasksSave, deletingTask } from "./features/storeTasks.js";
+import {
+  saveTasks,
+  getTasksSave,
+  deletingTask,
+} from "./features/storeTasks.js";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -35,17 +39,28 @@ const App = () => {
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
     deletingTask(tasks, id);
-
   };
 
   // Changing Status
   const changeStatus = (id) => {
     setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, status: !task.status } : task
-      )
+      tasks.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            status:
+              task.status === "ToDo"
+                ? "Doing"
+                : task.status === "Doing"
+                ? "Done"
+                : "ToDo",
+          };
+        } else {
+          return task;
+        }
+      })
     );
-  };
+  }
 
   // Fetches tasks from local storage
   useEffect(() => {
@@ -78,6 +93,7 @@ const App = () => {
             ) : (
               <Row className="label">
                 <Col className="columns">To Do</Col>
+                <Col className="columns">Doing</Col>
                 <Col className="columns">Done</Col>
               </Row>
             )}
