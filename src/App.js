@@ -10,10 +10,11 @@ import {
   saveTasks,
   getTasksSave,
   deletingTask,
+  getLocalItmes,
 } from "./features/storeTasks.js";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(getLocalItmes());
 
   // Add Task - one way
   // const addTask = async (task) => {
@@ -36,15 +37,17 @@ const App = () => {
   }
 
   // Delete Task
-  const deleteTask = (id) => {
+  function deleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
     deletingTask(tasks, id);
-  };
+    // let updatedTodos = [...tasks].filter((task) => task.id !== id);
+    // setTasks(updatedTodos);
+
+  }
 
   // Changing Status
-  const changeStatus = (id) => {
-    setTasks(
-      tasks.map((task) => {
+  function changeStatus(id) {
+    let updatedTodos = (tasks.map((task) => {
         if (task.id === id) {
           return {
             ...task,
@@ -60,7 +63,13 @@ const App = () => {
         }
       })
     );
+    setTasks(updatedTodos);
   }
+
+  useEffect(() => {
+    const json = JSON.stringify(tasks);
+    localStorage.setItem("@SavedTasks", json);
+  }, [tasks]);
 
   // Fetches tasks from local storage
   useEffect(() => {
@@ -73,6 +82,8 @@ const App = () => {
     }
     getTasks();
   }, []);
+
+
 
   return (
     <div className="App">
