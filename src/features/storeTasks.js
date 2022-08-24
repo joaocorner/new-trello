@@ -16,19 +16,21 @@ export async function saveTasks(key, newTodo) {
 
 //Delete tasks from local storage
 export function deletingTask(tasks, id) {
+  let link = window.location.pathname;
   let myTasks = tasks.filter((item) => {
     return item.id !== id;
   });
-  localStorage.setItem("@SavedTasks", JSON.stringify(myTasks));
+  localStorage.setItem(link, JSON.stringify(myTasks));
   return myTasks;
 }
 
 //Updating status of tasks from local storage for useEffect
 export const getLocalItmes = () => {
-  let list = localStorage.getItem("@SavedTasks");
+  let link = window.location.pathname;
+  let list = localStorage.getItem(link);
 
   if (list) {
-    return JSON.parse(localStorage.getItem("@SavedTasks"));
+    return JSON.parse(localStorage.getItem(link));
   } else {
     return [];
   }

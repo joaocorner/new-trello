@@ -22,7 +22,7 @@ const App = () => {
       const id = (await Math.floor(Math.random() * 1000000)) + 1;
       const newTask = await { ...task, id };
       setTasks([...tasks, newTask]);
-      saveTasks("@SavedTasks", newTask);
+      saveTasks(window.location.pathname, newTask);
     } catch {
       alert("Error");
     }
@@ -56,13 +56,13 @@ const App = () => {
 
   useEffect(() => {
     const json = JSON.stringify(tasks);
-    localStorage.setItem("@SavedTasks", json);
+    localStorage.setItem(window.location.pathname, json);
   }, [tasks]);
 
   // Fetches tasks from local storage
   useEffect(() => {
     async function getTasks() {
-      const result = await getTasksSave("@SavedTasks");
+      const result = await getTasksSave(window.location.pathname);
       if (result.length === 0) {
         console.log("No tasks found");
       }
