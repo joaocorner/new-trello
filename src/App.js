@@ -10,11 +10,11 @@ import {
   saveTasks,
   getTasksSave,
   deletingTask,
-  getLocalItmes,
+  getLocalItems,
 } from "./features/storeTasks.js";
 
 const App = () => {
-  const [tasks, setTasks] = useState(getLocalItmes());
+  const [tasks, setTasks] = useState(getLocalItems());
 
   // Add Task - another way
   async function addTask(task) {

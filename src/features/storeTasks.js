@@ -25,7 +25,7 @@ export function deletingTask(tasks, id) {
 }
 
 //Updating status of tasks from local storage for useEffect
-export const getLocalItmes = () => {
+export const getLocalItems = () => {
   let link = window.location.pathname;
   let list = localStorage.getItem(link);
 

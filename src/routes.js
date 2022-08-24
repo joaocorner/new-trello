@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import App from "./App";
-import Error from "./pages/Error";
 
 function RoutesApp() {
   return (
