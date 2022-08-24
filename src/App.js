@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import _ from "lodash";
 
 import {
   saveTasks,
@@ -19,7 +20,7 @@ const App = () => {
   // Add Task - another way
   async function addTask(task) {
     try {
-      const id = (await Math.floor(Math.random() * 1000000)) + 1;
+      const id = Math.floor(Math.random() * 1000000) + 1;
       const newTask = await { ...task, id };
       setTasks([...tasks, newTask]);
       saveTasks(window.location.pathname, newTask);
@@ -46,6 +47,24 @@ const App = () => {
               : task.status === "Doing"
               ? "Done"
               : "ToDo",
+          positionB:
+            task.status === "ToDo"
+              ? _.partition(tasks, { status: "Doing" })[0].length
+              : task.status === "Doing"
+              ? -1
+              : -1,
+          positionC:
+            task.status === "ToDo"
+              ? -1
+              : task.status === "Doing"
+              ? _.partition(tasks, { status: "Done" })[0].length
+              : -1,
+          positionA:
+            task.status === "ToDo"
+              ? -1
+              : task.status === "Doing"
+              ? -1
+              : _.partition(tasks, { status: "ToDo" })[0].length
         };
       } else {
         return task;
@@ -77,7 +96,7 @@ const App = () => {
       if (task.id === id) {
         return {
           ...task,
-          position: task.position - 1,
+          positionA: task.positionA - 1,
         };
       } else {
         return task;
@@ -92,7 +111,7 @@ const App = () => {
       if (task.id === id) {
         return {
           ...task,
-          position: task.position + 1,
+          positionA: task.positionA + 1,
         };
       } else {
         return task;
