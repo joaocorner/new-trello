@@ -1,14 +1,15 @@
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import "./input.css";
-
 import { useState } from "react";
+import { getLocalLength } from "../features/storeTasks.js";
 
 const InputText = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [tag, setTag] = useState("");
   const [status, setStatus] = useState("ToDo");
+  const [position, setPosition] = useState(0 && getLocalLength());
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -18,11 +19,12 @@ const InputText = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ title, text, tag, status });
+    onAdd({ title, text, tag, status, position });
     setTitle("");
     setText("");
     setTag("");
     setStatus("ToDo");
+    setPosition(getLocalLength);
   };
 
   return (

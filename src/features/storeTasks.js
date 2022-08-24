@@ -35,3 +35,11 @@ export const getLocalItems = () => {
     return [];
   }
 };
+
+//Get length of tasks from local storage
+export const getLocalLength = () => {
+  let arrayFromStorage = JSON.parse(
+    localStorage.getItem(window.location.pathname)
+  ).length;
+  return arrayFromStorage + 1;
+};

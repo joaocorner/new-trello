@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./columns.css";
 
-const Column = ({ tasks, onDelete, onChange }) => {
+const Column = ({ tasks, onDelete, onChange, goUp, goDown }) => {
   const todos = tasks.filter((task) => task.status === "ToDo");
   const doing = tasks.filter((task) => task.status === "Doing");
   const done = tasks.filter((task) => task.status === "Done");
@@ -26,6 +26,8 @@ const Column = ({ tasks, onDelete, onChange }) => {
                 task={task}
                 onDelete={onDelete}
                 onChange={onChange}
+                goUp={goUp}
+                goDown={goDown}
               />
             ))}
           </Col>
@@ -37,6 +39,8 @@ const Column = ({ tasks, onDelete, onChange }) => {
                 task={task}
                 onDelete={onDelete}
                 onChange={onChange}
+                goUp={goUp}
+                goDown={goDown}
               />
             ))}
           </Col>
@@ -48,6 +52,8 @@ const Column = ({ tasks, onDelete, onChange }) => {
                 task={task}
                 onDelete={onDelete}
                 onChange={onChange}
+                goUp={goUp}
+                goDown={goDown}
               />
             ))}
           </Col>

@@ -71,6 +71,38 @@ const App = () => {
     getTasks();
   }, []);
 
+  //Moving task up
+  function cardUp(id) {
+    let updatedTodos = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          position: task.position - 1,
+        };
+      } else {
+        return task;
+      }
+    });
+    setTasks(updatedTodos);
+  }
+
+  //Moving task down
+  function cardDown(id) {
+    let updatedTodos = tasks.map((task) => {
+      if (task.id === id) {
+        return {
+          ...task,
+          position: task.position + 1,
+        };
+      } else {
+        return task;
+      }
+    });
+    setTasks(updatedTodos);
+  }
+
+  //
+
   return (
     <div className="App">
       <Container className="external-border">
@@ -86,6 +118,8 @@ const App = () => {
                 tasks={tasks}
                 onDelete={deleteTask}
                 onChange={changeStatus}
+                goUp={cardUp}
+                goDown={cardDown}
               />
             ) : (
               <Row className="label">
