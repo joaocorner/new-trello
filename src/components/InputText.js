@@ -10,8 +10,8 @@ const InputText = ({ onAdd }) => {
   const [tag, setTag] = useState("");
   const [status, setStatus] = useState("ToDo");
   const [positionA, setPositionA] = useState(0);
-  const [positionB, setPositionB] = useState(0);
-  const [positionC, setPositionC] = useState(0);
+  const [positionB, setPositionB] = useState(-1);
+  const [positionC, setPositionC] = useState(-1);
 
   const onSubmit = (e) => {
     e.preventDefault();

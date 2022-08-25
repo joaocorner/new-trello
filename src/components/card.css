@@ -60,4 +60,12 @@
   .cards {
     width: 20vw;
   }
+  .downarrow {
+    right: 30px;
+    font-size: 20px;
+  }
+  .uparrow {
+    right: 50px;
+    font-size: 20px;
+  }
 }

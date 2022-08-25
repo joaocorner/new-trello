@@ -16,6 +16,7 @@ import {
 
 const App = () => {
   const [tasks, setTasks] = useState(getLocalItems());
+  
 
   // Add Task - another way
   async function addTask(task) {
