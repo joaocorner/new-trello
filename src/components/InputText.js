@@ -9,9 +9,7 @@ const InputText = ({ onAdd }) => {
   const [text, setText] = useState("");
   const [tag, setTag] = useState("");
   const [status, setStatus] = useState("ToDo");
-  const [positionA, setPositionA] = useState(0);
-  const [positionB, setPositionB] = useState(-1);
-  const [positionC, setPositionC] = useState(-1);
+
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -21,14 +19,12 @@ const InputText = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ title, text, tag, status, positionA, positionB, positionC });
+    onAdd({ title, text, tag, status});
     setTitle("");
     setText("");
     setTag("");
     setStatus("ToDo");
-    setPositionA(getLocalLength);
-    setPositionB(getLocalLength);
-    setPositionC(getLocalLength);
+
   };
 
   return (

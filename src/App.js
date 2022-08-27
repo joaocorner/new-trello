@@ -1,12 +1,13 @@
 import "./App.css";
-import Column from "./components/Column";
-import InputText from "./components/InputText";
 import { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
+import InputText from "./components/InputText";
+import "./components/card.css";
+import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import _ from "lodash";
-
+import Container from "react-bootstrap/Container";
+import { FaTimes } from "react-icons/fa";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import {
   saveTasks,
   getTasksSave,
@@ -16,12 +17,23 @@ import {
 
 const App = () => {
   const [tasks, setTasks] = useState(getLocalItems());
-  
+  const todos = tasks.filter((task) => task.status === "ToDo");
+  const doing = tasks.filter((task) => task.status === "Doing");
+  const done = tasks.filter((task) => task.status === "Done");
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+    const items = Array.from(tasks);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setTasks(items);
+  }
 
   // Add Task - another way
   async function addTask(task) {
     try {
-      const id = Math.floor(Math.random() * 1000000) + 1;
+      const number = Math.floor(Math.random() * 10000) + 1;
+      const id = "" + number;
       const newTask = await { ...task, id };
       setTasks([...tasks, newTask]);
       saveTasks(window.location.pathname, newTask);
@@ -48,24 +60,6 @@ const App = () => {
               : task.status === "Doing"
               ? "Done"
               : "ToDo",
-          positionB:
-            task.status === "ToDo"
-              ? _.partition(tasks, { status: "Doing" })[0].length
-              : task.status === "Doing"
-              ? -1
-              : -1,
-          positionC:
-            task.status === "ToDo"
-              ? -1
-              : task.status === "Doing"
-              ? _.partition(tasks, { status: "Done" })[0].length
-              : -1,
-          positionA:
-            task.status === "ToDo"
-              ? -1
-              : task.status === "Doing"
-              ? -1
-              : _.partition(tasks, { status: "ToDo" })[0].length
         };
       } else {
         return task;
@@ -91,38 +85,6 @@ const App = () => {
     getTasks();
   }, []);
 
-  //Moving task up
-  function cardUp(id) {
-    let updatedTodos = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          positionA: task.positionA - 1,
-        };
-      } else {
-        return task;
-      }
-    });
-    setTasks(updatedTodos);
-  }
-
-  //Moving task down
-  function cardDown(id) {
-    let updatedTodos = tasks.map((task) => {
-      if (task.id === id) {
-        return {
-          ...task,
-          positionA: task.positionA + 1,
-        };
-      } else {
-        return task;
-      }
-    });
-    setTasks(updatedTodos);
-  }
-
-  //
-
   return (
     <div className="App">
       <Container className="external-border">
@@ -132,23 +94,156 @@ const App = () => {
           </Col>
         </Row>
         <Row className="rows">
-          <Col className="columns">
-            {tasks.length > 0 ? (
-              <Column
-                tasks={tasks}
-                onDelete={deleteTask}
-                onChange={changeStatus}
-                goUp={cardUp}
-                goDown={cardDown}
-              />
-            ) : (
-              <Row className="label">
-                <Col className="columns">To Do</Col>
-                <Col className="columns">Doing</Col>
-                <Col className="columns">Done</Col>
-              </Row>
-            )}
-          </Col>
+          <Container>
+            <Row className="rows-label">
+              <Col className="columns">To Do</Col>
+              <Col className="columns">Doing</Col>
+              <Col className="columns">Done</Col>
+            </Row>
+            <Row className="rows">
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="todo">
+                  {(provided) => (
+                    <Col
+                      className="columns"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {" "}
+                      {todos.map(({ id, text, title, tag }, index) => (
+                        <Draggable key={id} draggableId={id} index={index}>
+                          {(provided) => (
+                            <div
+                              className="cards"
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              ref={provided.innerRef}
+                            >
+                              <Card
+                                key={id}
+                                className="bg-light cards"
+                                style={{ width: "18rem", height: "10rem" }}
+                              >
+                                <FaTimes
+                                  className="close"
+                                  onClick={() => deleteTask(id)}
+                                />
+                                <Card.Title
+                                  className="title"
+                                  onClick={() => changeStatus(id)}
+                                >
+                                  {title}
+                                </Card.Title>
+                                <Card.Subtitle className="tag">
+                                  {tag}
+                                </Card.Subtitle>
+                                <Card.Text className="text">{text}</Card.Text>
+                              </Card>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </Col>
+                  )}
+                </Droppable>
+              </DragDropContext>
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="doing">
+                  {(provided) => (
+                    <Col
+                      className="columns"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {" "}
+                      {doing.map(({ id, text, title, tag }, index) => (
+                        <Draggable key={id} draggableId={id} index={index}>
+                          {(provided) => (
+                            <div
+                              className="cards"
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              ref={provided.innerRef}
+                            >
+                              <Card
+                                key={id}
+                                className="bg-light cards"
+                                style={{ width: "18rem", height: "10rem" }}
+                              >
+                                <FaTimes
+                                  className="close"
+                                  onClick={() => deleteTask(id)}
+                                />
+                                <Card.Title
+                                  className="title"
+                                  onClick={() => changeStatus(id)}
+                                >
+                                  {title}
+                                </Card.Title>
+                                <Card.Subtitle className="tag">
+                                  {tag}
+                                </Card.Subtitle>
+                                <Card.Text className="text">{text}</Card.Text>
+                              </Card>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </Col>
+                  )}
+                </Droppable>
+              </DragDropContext>
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="done">
+                  {(provided) => (
+                    <Col
+                      className="columns"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {" "}
+                      {done.map(({ id, text, title, tag }, index) => (
+                        <Draggable key={id} draggableId={id} index={index}>
+                          {(provided) => (
+                            <div
+                              className="cards"
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              ref={provided.innerRef}
+                            >
+                              <Card
+                                key={id}
+                                className="bg-light cards"
+                                style={{ width: "18rem", height: "10rem" }}
+                              >
+                                <FaTimes
+                                  className="close"
+                                  onClick={() => deleteTask(id)}
+                                />
+                                <Card.Title
+                                  className="title"
+                                  onClick={() => changeStatus(id)}
+                                >
+                                  {title}
+                                </Card.Title>
+                                <Card.Subtitle className="tag">
+                                  {tag}
+                                </Card.Subtitle>
+                                <Card.Text className="text">{text}</Card.Text>
+                              </Card>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </Col>
+                  )}
+                </Droppable>
+              </DragDropContext>
+            </Row>
+          </Container>
         </Row>
       </Container>
     </div>
